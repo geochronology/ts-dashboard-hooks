@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 export const Menu = () => {
   return (
@@ -7,9 +8,14 @@ export const Menu = () => {
 
         <ul className="nav flex-column">
           <li className="nav-item">
-            <a className="nav-link active">
-              Dashboard <span className="sr-only">(current)</span>
-            </a>
+            <Link to={'/'} className="nav-link active">
+              Dashboard
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={'/users'} className="nav-link">
+              Users
+            </Link>
           </li>
 
         </ul>
