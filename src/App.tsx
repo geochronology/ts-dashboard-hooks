@@ -4,7 +4,7 @@ import { Menu } from "./components/Menu";
 import './App.css';
 import Dashboard from './pages/Dashboard';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Users from './pages/Users';
+import Users from './pages/users/Users';
 import Register from './pages/Register';
 import Login from './pages/Login';
 
