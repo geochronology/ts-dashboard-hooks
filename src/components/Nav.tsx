@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export const Nav = () => {
 
@@ -8,7 +9,6 @@ export const Nav = () => {
   })
 
   useEffect(() => {
-
     (
       async () => {
         const { data } = await axios.get('user')
@@ -16,8 +16,11 @@ export const Nav = () => {
         setUser(data)
       }
     )()
-
   }, [])
+
+  const logout = async () => {
+    await axios.post('logout', {})
+  }
 
 
   return (
@@ -25,8 +28,10 @@ export const Nav = () => {
       <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
 
       <ul className="my-2 my-md-0 mr-md-3">
-        <a className="p-2 text-white text-decoration-none" href="#">{user?.first_name}</a>
-        <a className="p-2 text-white text-decoration-none" href="#">Sign out</a>
+        <Link to="/profile" className="p-2 text-white text-decoration-none" href="#">{user?.first_name}</Link>
+        <Link to="/login" className="p-2 text-white text-decoration-none"
+          onClick={logout}
+        >Sign out</Link>
       </ul>
     </nav>
   )
