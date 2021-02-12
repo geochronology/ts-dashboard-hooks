@@ -11,9 +11,7 @@ export const Nav = () => {
 
     (
       async () => {
-        const { data } = await axios.get('http://localhost:8000/api/user',
-          { withCredentials: true } // uses jwt to authenticate
-        )
+        const { data } = await axios.get('user')
 
         setUser(data)
       }
