@@ -1,20 +1,37 @@
-import * as React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 export const Nav = () => {
+
+  const [user, setUser] = useState({
+    first_name: ''
+  })
+
+  useEffect(() => {
+
+    (
+      async () => {
+        const { data } = await axios.get('http://localhost:8000/api/user',
+          { withCredentials: true } // uses jwt to authenticate
+        )
+
+        setUser(data)
+      }
+    )()
+
+  }, [])
+
+
   return (
     <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
       <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
-      <input className="form-control form-control-dark w-100" type="text" placeholder="Search" />
-      <ul className="navbar-nav px-3">
-        <li className="nav-item text-nowrap">
-          <a className="nav-link" href="#">Sign out</a>
-        </li>
+
+      <ul className="my-2 my-md-0 mr-md-3">
+        <a className="p-2 text-white text-decoration-none" href="#">{user?.first_name}</a>
+        <a className="p-2 text-white text-decoration-none" href="#">Sign out</a>
       </ul>
     </nav>
   )
 }
-
-
-
 
 
